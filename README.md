@@ -63,3 +63,32 @@ On a first dev machine:
 On a second, significantly less powerful dev machine:
 - Server prepared challenge in 72µs
 - Client solved challenge in 660ms
+
+#### Benchmarks
+Prepare:
+```
+goos: linux
+goarch: amd64
+pkg: github.com/sanyokbig/words-of-wisdom/internal/challenger
+cpu: AMD Ryzen 7 2700 Eight-Core Processor          
+BenchmarkChallenger_Prepare
+BenchmarkChallenger_Prepare/n:4,_k:5
+BenchmarkChallenger_Prepare/n:4,_k:5-16         	  482184	      3851 ns/op	     416 B/op	      11 allocs/op
+BenchmarkChallenger_Prepare/n:21,_k:32
+BenchmarkChallenger_Prepare/n:21,_k:32-16       	   69559	     18551 ns/op	    1833 B/op	      70 allocs/op
+PASS
+```
+
+Solve:
+```
+goos: linux
+goarch: amd64
+pkg: github.com/sanyokbig/words-of-wisdom/internal/solver
+cpu: AMD Ryzen 7 2700 Eight-Core Processor          
+BenchmarkSolver_Solve
+BenchmarkSolver_Solve/n:4,_k:5
+BenchmarkSolver_Solve/n:4,_k:5-16         	  124255	     11415 ns/op	    1994 B/op	      34 allocs/op
+BenchmarkSolver_Solve/n:21,_k:32
+BenchmarkSolver_Solve/n:21,_k:32-16       	       3	 416640161 ns/op	168302037 B/op	 2097240 allocs/op
+PASS
+```

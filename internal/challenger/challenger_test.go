@@ -1,6 +1,7 @@
 package challenger
 
 import (
+	"math/rand"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -71,4 +72,43 @@ type stubRand struct {
 
 func (s stubRand) Uint64() uint64 {
 	return s.u
+}
+
+func BenchmarkChallenger_Prepare(b *testing.B) {
+	type args struct {
+		k int
+		n int
+	}
+	benchmarks := []struct {
+		name string
+		args args
+		rand RandUint64
+	}{
+		{
+			name: "n:4, k:5",
+			args: args{
+				k: 5,
+				n: 4,
+			},
+			rand: rand.Uint64,
+		},
+		{
+			name: "n:21, k:32",
+			args: args{
+				k: 32,
+				n: 21,
+			},
+			rand: rand.Uint64,
+		},
+	}
+	for _, bm := range benchmarks {
+		b.Run(bm.name, func(b *testing.B) {
+			b.ReportAllocs()
+			method := stubMethod{}
+
+			for i := 0; i < b.N; i++ {
+				New(bm.rand).Prepare(method, bm.args.n, bm.args.k)
+			}
+		})
+	}
 }

@@ -1,10 +1,15 @@
 package solver
 
 import (
+	"io/ioutil"
+	"log"
 	"math"
+	"math/rand"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"github.com/sanyokbig/words-of-wisdom/internal/challenger"
 )
 
 func Test_buildInversionTable(t *testing.T) {
@@ -141,4 +146,59 @@ func TestSolver_Solve(t *testing.T) {
 			assert.Equal(t, tt.wantOk, gotOk)
 		})
 	}
+}
+
+func BenchmarkSolver_Solve(b *testing.B) {
+	type args struct {
+		k int
+		n int
+	}
+	benchmarks := []struct {
+		name string
+		args args
+	}{
+		{
+			name: "n:4, k:5",
+			args: args{
+				k: 5,
+				n: 4,
+			},
+		},
+		{
+			name: "n:21, k:32",
+			args: args{
+				k: 32,
+				n: 21,
+			},
+		},
+	}
+	for _, bm := range benchmarks {
+		b.Run(bm.name, func(b *testing.B) {
+			b.ReportAllocs()
+			method := stubMethod2{}
+
+			// Discard logs during bench
+			log.SetOutput(ioutil.Discard)
+
+			for i := 0; i < b.N; i++ {
+				b.StopTimer()
+				challenge := challenger.New(rand.Uint64).Prepare(method, bm.args.n, bm.args.k)
+				b.StartTimer()
+
+				New(
+					challenge.Xk,
+					challenge.N,
+					challenge.K,
+					challenge.Checksum,
+					method,
+				).Solve()
+			}
+		})
+	}
+}
+
+type stubMethod2 struct{}
+
+func (s stubMethod2) F(u uint64) uint64 {
+	return u
 }
