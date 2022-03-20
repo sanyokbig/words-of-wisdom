@@ -22,7 +22,7 @@ func main() {
 	}
 
 	// Load quotes file
-	quotesFile, err := os.Open(config.QuotesSource)
+	quotesFile, err := os.Open(config.QuotesFilePath)
 	if err != nil {
 		log.Panicf("failed to open quotes file: %v", err)
 	}

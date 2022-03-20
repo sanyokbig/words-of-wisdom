@@ -3,8 +3,8 @@ package main
 import "github.com/caarlos0/env/v6"
 
 type Config struct {
-	TCPPort      int    `env:"TCP_PORT"`
-	QuotesSource string `env:"QUOTES_SOURCE"`
+	TCPPort        int    `env:"TCP_PORT"`
+	QuotesFilePath string `env:"QUOTES_FILE_PATH"`
 }
 
 func parse() (*Config, error) {
