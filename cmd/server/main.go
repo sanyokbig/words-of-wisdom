@@ -4,7 +4,9 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"os/signal"
 	"strconv"
+	"syscall"
 	"time"
 
 	quotesdispenser "github.com/sanyokbig/word-of-wisdom/internal/quotes-dispenser"
@@ -56,5 +58,11 @@ func main() {
 
 	log.Printf("listeninig on %v", listenAddr)
 
-	select {}
+	ch := make(chan os.Signal, 1)
+	signal.Notify(ch, syscall.SIGTERM, syscall.SIGINT)
+
+	select {
+	case sig := <-ch:
+		log.Printf("got signal %v", sig)
+	}
 }
