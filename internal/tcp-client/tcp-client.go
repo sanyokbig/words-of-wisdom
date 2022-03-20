@@ -16,27 +16,36 @@ type Wire interface {
 	Scanner() *bufio.Scanner
 }
 
+type WordsOfWisdom struct {
+	Text, Author string
+}
+
 type TCPClient struct {
 	wire Wire
+
+	wordsOfWisdom chan *WordsOfWisdom
 }
 
 func New(conn net.Conn) *TCPClient {
 	return &TCPClient{
-		wire: wire.New(conn),
+		wire:          wire.New(conn),
+		wordsOfWisdom: make(chan *WordsOfWisdom, 1),
 	}
 }
 
-func (c *TCPClient) RequestWordsOfWisdom() error {
+func (c *TCPClient) RequestWordsOfWisdom() (*WordsOfWisdom, error) {
 	log.Printf("requesting words of wisdom")
 
 	err := c.wire.Send(message.WordsOfWisdomRequest, nil)
 	if err != nil {
-		return fmt.Errorf("failed to send request: %w", err)
+		return nil, fmt.Errorf("failed to send request: %w", err)
 	}
 
 	log.Printf("words of wisdom requested")
 
-	return nil
+	wordsOfWisdom := <-c.wordsOfWisdom
+
+	return wordsOfWisdom, nil
 }
 
 func (c *TCPClient) Process() {
@@ -128,7 +137,10 @@ func (c *TCPClient) handleWordsOfWisdomResponse(payload []byte) {
 		return
 	}
 
-	log.Printf("the words of wisdom: \n\t \"%v\", %v", msg.Text, msg.Text)
+	c.wordsOfWisdom <- &WordsOfWisdom{
+		Text:   msg.Text,
+		Author: msg.Author,
+	}
 
 	return
 }
