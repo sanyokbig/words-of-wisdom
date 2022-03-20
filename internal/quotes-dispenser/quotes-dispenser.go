@@ -55,7 +55,7 @@ func (d *QuotesDispenser) setQuotes(quotes Quotes) {
 	d.mux.Unlock()
 }
 
-func (d *QuotesDispenser) Get() (string, string, error) {
+func (d *QuotesDispenser) Get() (text, author string, err error) {
 	d.mux.RLock()
 	defer d.mux.RUnlock()
 
