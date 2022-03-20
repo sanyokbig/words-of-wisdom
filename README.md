@@ -29,7 +29,7 @@ $ make clean-up
 ## Implementation
 Implemented PoW design is based on a [Moderately Hard, Memory-bound Functions](https://users.soe.ucsc.edu/~abadi/Papers/memory-longer-acm.pdf) work.
 
-Memory-bound PoW is chosen as memory access performance is less sensitive to hardware and should work fine on both low and high-end hardware.
+Memory-bound PoW is chosen as memory access performance is less sensitive to hardware and should work fine on both low and high-end hardware. In addition, performance of such algorithm is expected to be less sensitive to hardware evolution.
 
 General design matches a proposed one where Server generates a random _x0_ and applies _F()_ to it _k_ times resulting in _xk_.
 
@@ -43,7 +43,7 @@ It is desirable that there are _x_ and _x'_, where _F(x)=F(x')_. This requires c
 
 In addition, it's required that calling inverted F() is slower that accessing inversion table, encouraging client to use memory instead of CPU. 
 
-Current implementation of F() is pretty basic and probably could be reversed faster than accessing a memory. But it can be swapped for a different, more difficult function if needed.  
+Current implementation of F() can be swapped for a different, more difficult function if needed.  
 
 ### Challenge difficulty
 Difficulty of this PoW can be configured with two parameters _k_ and _n_.
