@@ -2,7 +2,6 @@ package challenger
 
 import (
 	"math"
-	"math/rand"
 
 	"github.com/sanyokbig/word-of-wisdom/internal/checksum"
 )
@@ -34,10 +33,16 @@ type Method interface {
 }
 
 // Challenger is a constructor of Challenge using Prepare() method
-type Challenger struct{}
+type Challenger struct {
+	randUint64 RandUint64
+}
 
-func New() *Challenger {
-	return &Challenger{}
+type RandUint64 func() uint64
+
+func New(randUint64 RandUint64) *Challenger {
+	return &Challenger{
+		randUint64: randUint64,
+	}
 }
 
 // Prepare will prepare a Challenge with selected Method and difficulty
@@ -47,7 +52,7 @@ func (c *Challenger) Prepare(method Method, n, k int) *Challenge {
 
 	// Initial value, which the client will try to find
 	// Remainder from division is used to limit by max
-	x0 := rand.Uint64() % (max + 1)
+	x0 := c.randUint64() % (max + 1)
 
 	// xk will be the value that client will receive, to be modified later
 	xk := x0

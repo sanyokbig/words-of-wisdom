@@ -1,7 +1,6 @@
 package challenger
 
 import (
-	"math/rand"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -13,10 +12,10 @@ func TestChallenger_Prepare(t *testing.T) {
 		n int
 	}
 	tests := []struct {
-		name     string
-		args     args
-		randSeed int64
-		want     *Challenge
+		name string
+		args args
+		rand RandUint64
+		want *Challenge
 	}{
 		{
 			name: "simple challenge",
@@ -24,13 +23,13 @@ func TestChallenger_Prepare(t *testing.T) {
 				k: 5,
 				n: 4,
 			},
-			randSeed: 11,
+			rand: stubRand{u: 9}.Uint64,
 			want: &Challenge{
 				X0:       9,
 				Xk:       8,
 				K:        5,
 				N:        4,
-				Checksum: "9631482d2c592fc903aafd3a5229fc79",
+				Checksum: "c62c24a07a66dd420465bf9913c37bdadc2145ebb131c52588fab625956a5cc3",
 			},
 		},
 		{
@@ -39,23 +38,23 @@ func TestChallenger_Prepare(t *testing.T) {
 				k: 32,
 				n: 21,
 			},
-			randSeed: 1,
+			rand: stubRand{u: 1899858}.Uint64,
 			want: &Challenge{
 				X0:       1899858,
 				Xk:       1899890,
 				K:        32,
 				N:        21,
-				Checksum: "fab9387142a8bce59bb374af29cecb54",
+				Checksum: "369e061fc3cca37028aacf96a6b38973dfa8f9381e9bcfe8e78eb8e0214a5850",
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			rand.Seed(tt.randSeed)
-
 			method := stubMethod{}
 
-			assert.Equalf(t, tt.want, New().Prepare(method, tt.args.n, tt.args.k), "New(%v, %v)", tt.args.n, tt.args.k)
+			got := New(tt.rand).Prepare(method, tt.args.n, tt.args.k)
+
+			assert.Equalf(t, tt.want, got, "New(%v, %v)", tt.args.n, tt.args.k)
 		})
 	}
 }
@@ -64,4 +63,12 @@ type stubMethod struct{}
 
 func (s stubMethod) F(u uint64) uint64 {
 	return u
+}
+
+type stubRand struct {
+	u uint64
+}
+
+func (s stubRand) Uint64() uint64 {
+	return s.u
 }
