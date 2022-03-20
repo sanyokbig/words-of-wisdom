@@ -30,11 +30,5 @@ func (s Simple) F(x uint64) uint64 {
 
 	result *= float64(s.max)
 
-	// Do not allow F(x) = x to generate more branches
-	if uint64(result) == x {
-		result += float64(s.max) / 2
-		result = float64(uint64(result) % s.max)
-	}
-
 	return uint64(result)
 }
