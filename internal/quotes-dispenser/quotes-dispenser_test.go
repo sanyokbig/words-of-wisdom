@@ -1,6 +1,7 @@
 package quotesdispenser
 
 import (
+	"fmt"
 	"io"
 	"strings"
 	"testing"
@@ -56,7 +57,7 @@ func TestQuotesDispenser_LoadJSON(t *testing.T) {
 	}
 }
 
-func TestQuotesDispenser_GetRandom(t *testing.T) {
+func TestQuotesDispenser_Get(t *testing.T) {
 	tests := []struct {
 		name      string
 		quotes    Quotes
@@ -84,15 +85,20 @@ func TestQuotesDispenser_GetRandom(t *testing.T) {
 			d := New()
 			d.setQuotes(tt.quotes)
 
-			got, err := d.GetRandom()
+			gotText, gotAuthor, err := d.Get()
+			gotQuote := Quote{Text: gotText, Author: gotAuthor}
 
 			assert.ErrorIs(t, err, tt.wantErr)
 
 			if tt.wantQuote {
-				assert.Contains(t, d.quotes, got)
+				assert.Contains(t, d.quotes, Quote{Text: gotText, Author: gotAuthor})
 			} else {
-				assert.Equal(t, Quote{}, got)
+				assert.Equal(t, Quote{}, gotQuote)
 			}
 		})
 	}
+}
+
+func TestHex(t *testing.T) {
+	t.Log(fmt.Sprintf("%016x", ^uint64(0)))
 }

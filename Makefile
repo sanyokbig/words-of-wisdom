@@ -3,6 +3,7 @@ download-quotes:
 
 gen-json:
 	cd internal/quotes-dispenser && easyjson quotes-dispenser.go
+	cd internal/message && easyjson message.go
 
 lint:
 	golangci-lint run

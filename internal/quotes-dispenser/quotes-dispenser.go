@@ -55,12 +55,12 @@ func (d *QuotesDispenser) setQuotes(quotes Quotes) {
 	d.mux.Unlock()
 }
 
-func (d *QuotesDispenser) GetRandom() (Quote, error) {
+func (d *QuotesDispenser) Get() (string, string, error) {
 	d.mux.RLock()
 	defer d.mux.RUnlock()
 
 	if d.quotesLen == 0 {
-		return Quote{}, ErrNoQuotes
+		return "", "", ErrNoQuotes
 	}
 
 	//nolint:gosec
@@ -68,5 +68,5 @@ func (d *QuotesDispenser) GetRandom() (Quote, error) {
 
 	quote := d.quotes[idx]
 
-	return quote, nil
+	return quote.Text, quote.Author, nil
 }
