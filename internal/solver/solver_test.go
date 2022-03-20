@@ -76,7 +76,7 @@ func TestSolver_Solve(t *testing.T) {
 			fields: fields{
 				xk:          6,
 				targetDepth: 3,
-				checksum:    "d5c9c3aa15c6442d033e59c755260eff",
+				checksum:    "8eda229e0eee784ec9b438678bf24c70ee69d6a5c7651366fb6c1c7985f02a05",
 				inversionTable: map[uint64][]uint64{
 					0:  {1, 8, 15},
 					1:  {0, 7, 14},
