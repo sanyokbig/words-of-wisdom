@@ -17,17 +17,25 @@ build-client:
 	docker build -t words-of-wisdom-client -f ./build/client.Dockerfile .
 
 run-server:
-	docker rm -f words-of-wisdom-server | true
-	docker run \
+	# (Re)Start network
+	docker network remove words-of-wisdom-net 2> /dev/null | true
+	docker network create words-of-wisdom-net
+
+	# (Re)Start server
+	docker rm -f words-of-wisdom-server 2> /dev/null| true
+	docker run --rm \
 		--env-file server.env \
 		--name words-of-wisdom-server \
+		--net words-of-wisdom-net \
 		-p 8000:8000 \
 		words-of-wisdom-server:latest
 
 run-client:
+	# (Re)Start client
 	docker rm -f words-of-wisdom-client | true
-	docker run \
+	docker run --rm \
 		--env-file client.env \
 		--name words-of-wisdom-client \
+		--net words-of-wisdom-net \
 		words-of-wisdom-client:latest
 
