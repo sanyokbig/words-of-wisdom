@@ -15,12 +15,16 @@ func main() {
 
 	config, err := parse()
 	if err != nil {
-		log.Panicf("failed to parse config: %v", err)
+		log.Printf("failed to parse config: %v", err)
+
+		return
 	}
 
 	conn, err := net.Dial("tcp", config.ServerAddr)
 	if err != nil {
-		log.Panicf("failed to connect with server: %v", err)
+		log.Printf("failed to connect with server: %v", err)
+
+		return
 	}
 
 	tcpClient := tcpclient.New(conn)
@@ -28,8 +32,10 @@ func main() {
 
 	wordsOfWisdom, err := tcpClient.RequestWordsOfWisdom()
 	if err != nil {
-		log.Panicf("failed to request words of wisdom: %v", err)
+		log.Printf("failed to receive words of wisdom: %v", err)
+
+		return
 	}
 
-	log.Printf("the words of wisdom: \n\t \"%v\", %v", wordsOfWisdom.Text, wordsOfWisdom.Text)
+	log.Printf("the words of wisdom: \n\n\t \"%v\", %v\n", wordsOfWisdom.Text, wordsOfWisdom.Author)
 }
