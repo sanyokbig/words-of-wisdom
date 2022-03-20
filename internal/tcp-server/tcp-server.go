@@ -51,10 +51,6 @@ func (s *TCPServer) ListenAndServe(listenAddr string) error {
 	}
 }
 
-func (s *TCPServer) Close() error {
-	return s.listener.Close()
-}
-
 func (s *TCPServer) prepareChallenge() *challenger.Challenge {
 	// Right now both bitSize and depth parameters are constant, but can be dynamically adjusted based on a number of
 	// active clients or other metrics and conditions if needed
