@@ -53,7 +53,7 @@ func (s *Solver) Solve() (uint64, bool) {
 
 // Build a table for InvertedF() by applying F() to all integers in [0, 2^n)
 func buildInversionTable(n int, method Method) map[uint64][]uint64 {
-	max := uint64(math.Pow(2, float64(n)))
+	max := mathpkg.Pow2(n)
 	inversionTable := make(map[uint64][]uint64, max)
 
 	for i := 0; i < int(max); i++ {
