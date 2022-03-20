@@ -32,6 +32,4 @@ func main() {
 	}
 
 	log.Printf("the words of wisdom: \n\t \"%v\", %v", wordsOfWisdom.Text, wordsOfWisdom.Text)
-
-	select {}
 }
