@@ -24,25 +24,19 @@ func main() {
 	// Load quotes file
 	quotesFile, err := os.Open(config.QuotesSource)
 	if err != nil {
-		log.Printf("failed to open quotes file: %v", err)
-
-		return
+		log.Panicf("failed to open quotes file: %v", err)
 	}
 
 	// Prepare quotes dispenser
 	quotesDispenser := quotesdispenser.New()
 	err = quotesDispenser.LoadJSON(quotesFile)
 	if err != nil {
-		log.Printf("failed to load json: %v", err)
-
-		return
+		log.Panicf("failed to load json: %v", err)
 	}
 
 	err = quotesFile.Close()
 	if err != nil {
-		log.Printf("failed to close quotes file: %v", err)
-
-		return
+		log.Panicf("failed to close quotes file: %v", err)
 	}
 
 	listenAddr := ":" + strconv.Itoa(config.TCPPort)
@@ -51,7 +45,7 @@ func main() {
 	go func() {
 		err := tcpServer.ListenAndServe(listenAddr)
 		if err != nil {
-			log.Printf("failed to listen and serve")
+			log.Panicf("failed to listen and serve: %v", err)
 		}
 	}()
 
