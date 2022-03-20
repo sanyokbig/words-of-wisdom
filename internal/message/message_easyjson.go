@@ -110,7 +110,7 @@ func easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage1(in *jl
 		}
 		switch key {
 		case "type":
-			out.Type = Type(in.Int())
+			out.Type = MsgType(in.Int())
 		case "payload":
 			if data := in.Raw(); in.Ok() {
 				in.AddError((out.Payload).UnmarshalJSON(data))

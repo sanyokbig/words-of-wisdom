@@ -45,7 +45,7 @@ func scanDocuments(data []byte, atEOF bool) (advance int, token []byte, err erro
 	return 0, nil, nil
 }
 
-func (w *Wire) Send(msgType message.Type, payload json.Marshaler) (err error) {
+func (w *Wire) Send(msgType message.MsgType, payload json.Marshaler) (err error) {
 	var rawPayload []byte
 
 	if payload != nil {

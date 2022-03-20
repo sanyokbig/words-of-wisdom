@@ -24,10 +24,10 @@ type TCPServer struct {
 	challenger    Challenger
 }
 
-func New(wordsOfWisdom WordsOfWisdom, challenger Challenger) *TCPServer {
+func New(wordsOfWisdom WordsOfWisdom, ch Challenger) *TCPServer {
 	return &TCPServer{
 		wordsOfWisdom: wordsOfWisdom,
-		challenger:    challenger,
+		challenger:    ch,
 	}
 }
 
@@ -61,6 +61,7 @@ func (s *TCPServer) prepareChallenge() *challenger.Challenge {
 		// Depth affects both server and client execution time
 		depth = 64
 	)
+
 	return s.challenger.Prepare(simple.New(bitSize), bitSize, depth)
 }
 

@@ -14,7 +14,7 @@ import (
 )
 
 type Wire interface {
-	Send(message.Type, json.Marshaler) error
+	Send(message.MsgType, json.Marshaler) error
 	Scanner() *bufio.Scanner
 }
 

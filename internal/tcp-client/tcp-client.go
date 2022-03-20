@@ -15,7 +15,7 @@ import (
 )
 
 type Wire interface {
-	Send(message.Type, json.Marshaler) error
+	Send(message.MsgType, json.Marshaler) error
 	Scanner() *bufio.Scanner
 }
 
@@ -132,8 +132,6 @@ func (c *TCPClient) handleChallengeRequest(payload []byte) {
 	}
 
 	log.Printf("solution sent to server")
-
-	return
 }
 
 func (c *TCPClient) solve(xk uint64, n, k int, checksum string) (uint64, error) {
@@ -162,6 +160,4 @@ func (c *TCPClient) handleWordsOfWisdomResponse(payload []byte) {
 		Text:   msg.Text,
 		Author: msg.Author,
 	}
-
-	return
 }

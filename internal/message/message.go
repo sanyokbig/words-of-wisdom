@@ -2,10 +2,10 @@ package message
 
 import "encoding/json"
 
-type Type int
+type MsgType int
 
 const (
-	WordsOfWisdomRequest Type = iota + 1
+	WordsOfWisdomRequest MsgType = iota + 1
 	WordsOfWisdomResponse
 	ChallengeRequest
 	ChallengeResponse
@@ -13,7 +13,7 @@ const (
 
 //easyjson:json
 type Message struct {
-	Type    Type            `json:"type"`
+	Type    MsgType         `json:"type"`
 	Payload json.RawMessage `json:"payload,omitempty"`
 }
 

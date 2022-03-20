@@ -11,6 +11,7 @@ type Simple struct {
 
 func New(n int) *Simple {
 	log.Printf("prepared simple method with n: %v", n)
+
 	return &Simple{
 		max: uint64(math.Pow(2, float64(n))) - 1,
 	}
@@ -25,7 +26,7 @@ func (s Simple) F(x uint64) uint64 {
 		result = -result
 	}
 
-	result = result * float64(s.max)
+	result *= float64(s.max)
 
 	// Do not allow F(x) = x
 	if uint64(result) == x {

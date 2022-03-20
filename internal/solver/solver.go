@@ -36,11 +36,11 @@ type Method interface {
 	F(uint64) uint64
 }
 
-func New(xk uint64, n, k int, checksum string, method Method) *Solver {
+func New(xk uint64, n, k int, expectedChecksum string, method Method) *Solver {
 	return &Solver{
 		targetDepth:    k,
 		xk:             xk,
-		checksum:       checksum,
+		checksum:       expectedChecksum,
 		inversionTable: buildInversionTable(n, method),
 	}
 }

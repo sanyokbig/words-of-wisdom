@@ -2,16 +2,13 @@ package main
 
 import (
 	"log"
-	"math/rand"
 	"net"
-	"time"
 
 	tcpclient "github.com/sanyokbig/word-of-wisdom/internal/tcp-client"
 )
 
 func main() {
 	log.Print("starting client...")
-	rand.Seed(time.Now().UnixNano())
 
 	config, err := parse()
 	if err != nil {
