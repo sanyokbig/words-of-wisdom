@@ -1,7 +1,7 @@
 package checksum
 
 import (
-	"crypto/md5"
+	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
 )
@@ -20,7 +20,7 @@ func Make(sequence []uint64) string {
 		joinedHexes = append(joinedHexes, []byte(fmt.Sprintf("%016x", v))...)
 	}
 
-	hexHash := md5.Sum(joinedHexes)
+	hexHash := sha256.Sum256(joinedHexes)
 	hash := hex.EncodeToString(hexHash[:])
 
 	return hash

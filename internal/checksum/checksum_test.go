@@ -17,7 +17,7 @@ func Test_Make(t *testing.T) {
 			sequence: []uint64{
 				1, 2, 3,
 			},
-			wantHash: "da0a23fa895d44e039c77aaeec1c28bd",
+			wantHash: "fb59f40ac082d9075b753ee3dede9b654b696b478e33c9701fcc7da5687290e0",
 		},
 		{
 			name: "sequence with 3 enormous elements",
@@ -26,12 +26,12 @@ func Test_Make(t *testing.T) {
 				^uint64(0) - 1,
 				^uint64(0) - 2,
 			},
-			wantHash: "fa65ce2585fc8be89c830a255c553eee",
+			wantHash: "d873983c0a6822fd8c0fce4004c3d729698dc6abb04f1b48652d165a7769ae89",
 		},
 		{
 			name:     "sequence with no elements",
 			sequence: []uint64{},
-			wantHash: "d41d8cd98f00b204e9800998ecf8427e",
+			wantHash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
 		},
 	}
 	for _, tt := range tests {
