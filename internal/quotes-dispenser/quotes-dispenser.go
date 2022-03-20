@@ -11,10 +11,9 @@ import (
 var ErrNoQuotes = errors.New("no quotes")
 
 type QuotesDispenser struct {
-	mux sync.RWMutex
-
 	quotes    Quotes
 	quotesLen int
+	mux       sync.RWMutex
 }
 
 //easyjson:json

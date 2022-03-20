@@ -1,7 +1,6 @@
 package quotesdispenser
 
 import (
-	"fmt"
 	"io"
 	"strings"
 	"testing"
@@ -91,14 +90,10 @@ func TestQuotesDispenser_Get(t *testing.T) {
 			assert.ErrorIs(t, err, tt.wantErr)
 
 			if tt.wantQuote {
-				assert.Contains(t, d.quotes, Quote{Text: gotText, Author: gotAuthor})
+				assert.Contains(t, d.quotes, gotQuote)
 			} else {
 				assert.Equal(t, Quote{}, gotQuote)
 			}
 		})
 	}
-}
-
-func TestHex(t *testing.T) {
-	t.Log(fmt.Sprintf("%016x", ^uint64(0)))
 }

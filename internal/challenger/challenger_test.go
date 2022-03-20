@@ -55,7 +55,7 @@ func TestChallenger_Prepare(t *testing.T) {
 
 			got := New(tt.rand).Prepare(tt.args.n, tt.args.k, method)
 
-			assert.Equalf(t, tt.want, got, "New(%v, %v)", tt.args.n, tt.args.k)
+			assert.Equal(t, tt.want, got)
 		})
 	}
 }

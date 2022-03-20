@@ -28,7 +28,7 @@ type Client struct {
 }
 
 // challengePreparer is a simplified version of Challenger, so that we can receive a challenge with a different
-// difficulty depending on external factors like server load that client should no worry and know about.
+// difficulty depending on external factors like server load that client should not worry and know about.
 type challengePreparer interface {
 	prepareChallenge() *challenger.Challenge
 }
@@ -54,9 +54,7 @@ func (c *Client) Process() {
 	}
 
 	if err := scanner.Err(); err != nil {
-		log.Printf("connection closed: %v: err", err)
-
-		return
+		log.Printf("scanner err: %v: err", err)
 	}
 }
 
@@ -88,16 +86,16 @@ func (c *Client) handleWordsOfWisdomRequest() {
 	}
 
 	now := time.Now().UTC()
-	ci := c.challengePreparer.prepareChallenge()
+	challenge := c.challengePreparer.prepareChallenge()
 	log.Printf("challenged prepared in %v", time.Since(now))
 
 	err := c.wire.Send(
 		message.ChallengeRequest,
 		message.ChallengeRequestPayload{
-			Xk:       ci.Xk,
-			K:        ci.K,
-			N:        ci.N,
-			Checksum: ci.Checksum,
+			Xk:       challenge.Xk,
+			K:        challenge.K,
+			N:        challenge.N,
+			Checksum: challenge.Checksum,
 		})
 	if err != nil {
 		log.Printf("failed to send challenge to client: %v", err)
@@ -105,8 +103,8 @@ func (c *Client) handleWordsOfWisdomRequest() {
 		return
 	}
 
-	c.challenge = ci
-	log.Printf("client is challenged with %+v", ci)
+	c.challenge = challenge
+	log.Printf("client is challenged with %+v", challenge)
 }
 
 func (c *Client) handleChallengeResponse(payload []byte) {
@@ -134,11 +132,9 @@ func (c *Client) handleChallengeResponse(payload []byte) {
 
 	log.Printf("solution is valid, granting a words of wisdom")
 
-	err = c.grandWordsOfWisdom()
+	err = c.grantWordsOfWisdom()
 	if err != nil {
 		log.Printf("failed to grant a words of wisdom: %v", err)
-
-		return
 	}
 }
 
@@ -150,7 +146,7 @@ func (c *Client) validateSolution(y0 uint64) bool {
 	return c.challenge.X0 == y0
 }
 
-func (c *Client) grandWordsOfWisdom() error {
+func (c *Client) grantWordsOfWisdom() error {
 	text, author, err := c.wordsOfWisdom.Get()
 	if err != nil {
 		return fmt.Errorf("failed to get: %w", err)

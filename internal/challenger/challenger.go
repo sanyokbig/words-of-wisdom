@@ -54,15 +54,13 @@ func (c *Challenger) Prepare(n, k int, method Method) *Challenge {
 	// Remainder from division is used to limit by max
 	x0 := c.randUint64() % (max + 1)
 
-	// xk will be the value that client will receive, to be modified later
-	xk := x0
-
 	// Sequence represents the sequence xk,...,x0 as a slice of bytes
 	// Will be used later to generate sequence checksum for client to validate found solution
 	sequence := make([]uint64, k+1)
 	sequence[k] = x0
 
 	// Apply F() k times to x0 while also applying XOR on every iteration to make calculation dependent on a step number
+	xk := x0
 	for i := uint64(1); i <= uint64(k); i++ {
 		xk = method.F(xk) ^ i
 		sequence[uint64(k)-i] = xk

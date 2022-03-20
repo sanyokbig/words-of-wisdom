@@ -76,7 +76,7 @@ func buildInversionTable(n int, method Method) map[uint64][]uint64 {
 	return inversionTable
 }
 
-// findValueAtDepth will run recursively and scan all leafs until required depth is achieved ore there are no more leafs
+// findValueAtDepth will run recursively and scan all leafs until required depth is achieved or there are no more leafs
 // If required depth is achieved and sequence checksum matches one received from the server, then we've found a solution
 func (s *Solver) findValueAtDepth(currValue uint64, sequence []uint64) (value uint64, ok bool) {
 	currDepth := s.targetDepth - len(sequence)
