@@ -53,7 +53,7 @@ func TestChallenger_Prepare(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			method := stubMethod{}
 
-			got := New(tt.rand).Prepare(method, tt.args.n, tt.args.k)
+			got := New(tt.rand).Prepare(tt.args.n, tt.args.k, method)
 
 			assert.Equalf(t, tt.want, got, "New(%v, %v)", tt.args.n, tt.args.k)
 		})
@@ -107,7 +107,7 @@ func BenchmarkChallenger_Prepare(b *testing.B) {
 			method := stubMethod{}
 
 			for i := 0; i < b.N; i++ {
-				New(bm.rand).Prepare(method, bm.args.n, bm.args.k)
+				New(bm.rand).Prepare(bm.args.n, bm.args.k, method)
 			}
 		})
 	}

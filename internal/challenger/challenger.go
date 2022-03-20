@@ -46,7 +46,7 @@ func New(randUint64 RandUint64) *Challenger {
 }
 
 // Prepare will prepare a Challenge with selected Method and difficulty
-func (c *Challenger) Prepare(method Method, n, k int) *Challenge {
+func (c *Challenger) Prepare(n, k int, method Method) *Challenge {
 	// Max possible value for x0
 	max := mathpkg.Pow2(n) - 1
 

@@ -14,7 +14,7 @@ type WordsOfWisdom interface {
 }
 
 type Challenger interface {
-	Prepare(method challenger.Method, n, k int) *challenger.Challenge
+	Prepare(n, k int, method challenger.Method) *challenger.Challenge
 }
 
 type TCPServer struct {
@@ -62,7 +62,7 @@ func (s *TCPServer) prepareChallenge() *challenger.Challenge {
 		depth = 64
 	)
 
-	return s.challenger.Prepare(simple.New(bitSize), bitSize, depth)
+	return s.challenger.Prepare(bitSize, depth, simple.New(bitSize))
 }
 
 func (s *TCPServer) handleConn(conn net.Conn) {

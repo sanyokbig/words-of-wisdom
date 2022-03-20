@@ -182,7 +182,7 @@ func BenchmarkSolver_Solve(b *testing.B) {
 
 			for i := 0; i < b.N; i++ {
 				b.StopTimer()
-				challenge := challenger.New(rand.Uint64).Prepare(method, bm.args.n, bm.args.k)
+				challenge := challenger.New(rand.Uint64).Prepare(bm.args.n, bm.args.k, method)
 				b.StartTimer()
 
 				New(
