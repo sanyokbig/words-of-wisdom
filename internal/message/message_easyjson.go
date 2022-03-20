@@ -252,6 +252,10 @@ func easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage3(in *jl
 		switch key {
 		case "xk":
 			out.Xk = uint64(in.Uint64())
+		case "k":
+			out.K = int(in.Int())
+		case "n":
+			out.N = int(in.Int())
 		case "checksum":
 			out.Checksum = string(in.String())
 		default:
@@ -272,6 +276,16 @@ func easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage3(out *j
 		const prefix string = ",\"xk\":"
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.Xk))
+	}
+	{
+		const prefix string = ",\"k\":"
+		out.RawString(prefix)
+		out.Int(int(in.K))
+	}
+	{
+		const prefix string = ",\"n\":"
+		out.RawString(prefix)
+		out.Int(int(in.N))
 	}
 	{
 		const prefix string = ",\"checksum\":"
