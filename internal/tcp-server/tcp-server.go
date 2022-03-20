@@ -5,8 +5,8 @@ import (
 	"log"
 	"net"
 
-	"github.com/sanyokbig/word-of-wisdom/internal/challenger"
-	"github.com/sanyokbig/word-of-wisdom/internal/methods/simple"
+	"github.com/sanyokbig/words-of-wisdom/internal/challenger"
+	"github.com/sanyokbig/words-of-wisdom/internal/methods/simple"
 )
 
 type WordsOfWisdom interface {

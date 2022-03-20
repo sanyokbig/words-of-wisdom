@@ -3,7 +3,7 @@ package challenger
 import (
 	"math"
 
-	"github.com/sanyokbig/word-of-wisdom/internal/checksum"
+	"github.com/sanyokbig/words-of-wisdom/internal/checksum"
 )
 
 // Challenge contains all info required to solve the challenge

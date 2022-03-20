@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 
-	tcpclient "github.com/sanyokbig/word-of-wisdom/internal/tcp-client"
+	tcpclient "github.com/sanyokbig/words-of-wisdom/internal/tcp-client"
 )
 
 func main() {

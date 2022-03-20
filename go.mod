@@ -1,4 +1,4 @@
-module github.com/sanyokbig/word-of-wisdom
+module github.com/sanyokbig/words-of-wisdom
 
 go 1.17
 

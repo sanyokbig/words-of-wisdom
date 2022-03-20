@@ -17,7 +17,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage(in *jlexer.Lexer, out *WordsOfWisdomResponsePayload) {
+func easyjson4086215fDecodeGithubComSanyokbigWordsOfWisdomInternalMessage(in *jlexer.Lexer, out *WordsOfWisdomResponsePayload) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -50,7 +50,7 @@ func easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage(in *jle
 		in.Consumed()
 	}
 }
-func easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage(out *jwriter.Writer, in WordsOfWisdomResponsePayload) {
+func easyjson4086215fEncodeGithubComSanyokbigWordsOfWisdomInternalMessage(out *jwriter.Writer, in WordsOfWisdomResponsePayload) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -70,27 +70,27 @@ func easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage(out *jw
 // MarshalJSON supports json.Marshaler interface
 func (v WordsOfWisdomResponsePayload) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage(&w, v)
+	easyjson4086215fEncodeGithubComSanyokbigWordsOfWisdomInternalMessage(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v WordsOfWisdomResponsePayload) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage(w, v)
+	easyjson4086215fEncodeGithubComSanyokbigWordsOfWisdomInternalMessage(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *WordsOfWisdomResponsePayload) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage(&r, v)
+	easyjson4086215fDecodeGithubComSanyokbigWordsOfWisdomInternalMessage(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *WordsOfWisdomResponsePayload) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage(l, v)
+	easyjson4086215fDecodeGithubComSanyokbigWordsOfWisdomInternalMessage(l, v)
 }
-func easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage1(in *jlexer.Lexer, out *Message) {
+func easyjson4086215fDecodeGithubComSanyokbigWordsOfWisdomInternalMessage1(in *jlexer.Lexer, out *Message) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -125,7 +125,7 @@ func easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage1(in *jl
 		in.Consumed()
 	}
 }
-func easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage1(out *jwriter.Writer, in Message) {
+func easyjson4086215fEncodeGithubComSanyokbigWordsOfWisdomInternalMessage1(out *jwriter.Writer, in Message) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -145,27 +145,27 @@ func easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage1(out *j
 // MarshalJSON supports json.Marshaler interface
 func (v Message) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage1(&w, v)
+	easyjson4086215fEncodeGithubComSanyokbigWordsOfWisdomInternalMessage1(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v Message) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage1(w, v)
+	easyjson4086215fEncodeGithubComSanyokbigWordsOfWisdomInternalMessage1(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *Message) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage1(&r, v)
+	easyjson4086215fDecodeGithubComSanyokbigWordsOfWisdomInternalMessage1(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *Message) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage1(l, v)
+	easyjson4086215fDecodeGithubComSanyokbigWordsOfWisdomInternalMessage1(l, v)
 }
-func easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage2(in *jlexer.Lexer, out *ChallengeResponsePayload) {
+func easyjson4086215fDecodeGithubComSanyokbigWordsOfWisdomInternalMessage2(in *jlexer.Lexer, out *ChallengeResponsePayload) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -196,7 +196,7 @@ func easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage2(in *jl
 		in.Consumed()
 	}
 }
-func easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage2(out *jwriter.Writer, in ChallengeResponsePayload) {
+func easyjson4086215fEncodeGithubComSanyokbigWordsOfWisdomInternalMessage2(out *jwriter.Writer, in ChallengeResponsePayload) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -211,27 +211,27 @@ func easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage2(out *j
 // MarshalJSON supports json.Marshaler interface
 func (v ChallengeResponsePayload) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage2(&w, v)
+	easyjson4086215fEncodeGithubComSanyokbigWordsOfWisdomInternalMessage2(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v ChallengeResponsePayload) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage2(w, v)
+	easyjson4086215fEncodeGithubComSanyokbigWordsOfWisdomInternalMessage2(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *ChallengeResponsePayload) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage2(&r, v)
+	easyjson4086215fDecodeGithubComSanyokbigWordsOfWisdomInternalMessage2(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *ChallengeResponsePayload) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage2(l, v)
+	easyjson4086215fDecodeGithubComSanyokbigWordsOfWisdomInternalMessage2(l, v)
 }
-func easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage3(in *jlexer.Lexer, out *ChallengeRequestPayload) {
+func easyjson4086215fDecodeGithubComSanyokbigWordsOfWisdomInternalMessage3(in *jlexer.Lexer, out *ChallengeRequestPayload) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -268,7 +268,7 @@ func easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage3(in *jl
 		in.Consumed()
 	}
 }
-func easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage3(out *jwriter.Writer, in ChallengeRequestPayload) {
+func easyjson4086215fEncodeGithubComSanyokbigWordsOfWisdomInternalMessage3(out *jwriter.Writer, in ChallengeRequestPayload) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -298,23 +298,23 @@ func easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage3(out *j
 // MarshalJSON supports json.Marshaler interface
 func (v ChallengeRequestPayload) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage3(&w, v)
+	easyjson4086215fEncodeGithubComSanyokbigWordsOfWisdomInternalMessage3(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v ChallengeRequestPayload) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson4086215fEncodeGithubComSanyokbigWordOfWisdomInternalMessage3(w, v)
+	easyjson4086215fEncodeGithubComSanyokbigWordsOfWisdomInternalMessage3(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *ChallengeRequestPayload) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage3(&r, v)
+	easyjson4086215fDecodeGithubComSanyokbigWordsOfWisdomInternalMessage3(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *ChallengeRequestPayload) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson4086215fDecodeGithubComSanyokbigWordOfWisdomInternalMessage3(l, v)
+	easyjson4086215fDecodeGithubComSanyokbigWordsOfWisdomInternalMessage3(l, v)
 }

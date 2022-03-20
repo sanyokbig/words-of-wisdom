@@ -17,7 +17,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjsonF37e5e85DecodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser(in *jlexer.Lexer, out *Quotes) {
+func easyjsonF37e5e85DecodeGithubComSanyokbigWordsOfWisdomInternalQuotesDispenser(in *jlexer.Lexer, out *Quotes) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		in.Skip()
@@ -45,7 +45,7 @@ func easyjsonF37e5e85DecodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser
 		in.Consumed()
 	}
 }
-func easyjsonF37e5e85EncodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser(out *jwriter.Writer, in Quotes) {
+func easyjsonF37e5e85EncodeGithubComSanyokbigWordsOfWisdomInternalQuotesDispenser(out *jwriter.Writer, in Quotes) {
 	if in == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
 		out.RawString("null")
 	} else {
@@ -63,27 +63,27 @@ func easyjsonF37e5e85EncodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser
 // MarshalJSON supports json.Marshaler interface
 func (v Quotes) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonF37e5e85EncodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser(&w, v)
+	easyjsonF37e5e85EncodeGithubComSanyokbigWordsOfWisdomInternalQuotesDispenser(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v Quotes) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonF37e5e85EncodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser(w, v)
+	easyjsonF37e5e85EncodeGithubComSanyokbigWordsOfWisdomInternalQuotesDispenser(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *Quotes) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonF37e5e85DecodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser(&r, v)
+	easyjsonF37e5e85DecodeGithubComSanyokbigWordsOfWisdomInternalQuotesDispenser(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *Quotes) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonF37e5e85DecodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser(l, v)
+	easyjsonF37e5e85DecodeGithubComSanyokbigWordsOfWisdomInternalQuotesDispenser(l, v)
 }
-func easyjsonF37e5e85DecodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser1(in *jlexer.Lexer, out *Quote) {
+func easyjsonF37e5e85DecodeGithubComSanyokbigWordsOfWisdomInternalQuotesDispenser1(in *jlexer.Lexer, out *Quote) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -116,7 +116,7 @@ func easyjsonF37e5e85DecodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser
 		in.Consumed()
 	}
 }
-func easyjsonF37e5e85EncodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser1(out *jwriter.Writer, in Quote) {
+func easyjsonF37e5e85EncodeGithubComSanyokbigWordsOfWisdomInternalQuotesDispenser1(out *jwriter.Writer, in Quote) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -136,23 +136,23 @@ func easyjsonF37e5e85EncodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser
 // MarshalJSON supports json.Marshaler interface
 func (v Quote) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonF37e5e85EncodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser1(&w, v)
+	easyjsonF37e5e85EncodeGithubComSanyokbigWordsOfWisdomInternalQuotesDispenser1(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v Quote) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonF37e5e85EncodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser1(w, v)
+	easyjsonF37e5e85EncodeGithubComSanyokbigWordsOfWisdomInternalQuotesDispenser1(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *Quote) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonF37e5e85DecodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser1(&r, v)
+	easyjsonF37e5e85DecodeGithubComSanyokbigWordsOfWisdomInternalQuotesDispenser1(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *Quote) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonF37e5e85DecodeGithubComSanyokbigWordOfWisdomInternalQuotesDispenser1(l, v)
+	easyjsonF37e5e85DecodeGithubComSanyokbigWordsOfWisdomInternalQuotesDispenser1(l, v)
 }

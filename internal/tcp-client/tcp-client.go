@@ -8,10 +8,10 @@ import (
 	"net"
 	"time"
 
-	"github.com/sanyokbig/word-of-wisdom/internal/message"
-	"github.com/sanyokbig/word-of-wisdom/internal/methods/simple"
-	"github.com/sanyokbig/word-of-wisdom/internal/solver"
-	"github.com/sanyokbig/word-of-wisdom/internal/wire"
+	"github.com/sanyokbig/words-of-wisdom/internal/message"
+	"github.com/sanyokbig/words-of-wisdom/internal/methods/simple"
+	"github.com/sanyokbig/words-of-wisdom/internal/solver"
+	"github.com/sanyokbig/words-of-wisdom/internal/wire"
 )
 
 type Wire interface {

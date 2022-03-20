@@ -8,9 +8,9 @@ import (
 	"net"
 	"time"
 
-	"github.com/sanyokbig/word-of-wisdom/internal/challenger"
-	"github.com/sanyokbig/word-of-wisdom/internal/message"
-	"github.com/sanyokbig/word-of-wisdom/internal/wire"
+	"github.com/sanyokbig/words-of-wisdom/internal/challenger"
+	"github.com/sanyokbig/words-of-wisdom/internal/message"
+	"github.com/sanyokbig/words-of-wisdom/internal/wire"
 )
 
 type Wire interface {
@@ -72,14 +72,14 @@ func (c *Client) handleMsg(data []byte) {
 	log.Printf("received client message: %+v", msg)
 	switch msg.Type {
 	case message.WordsOfWisdomRequest:
-		c.handleWordOfWisdomRequest()
+		c.handleWordsOfWisdomRequest()
 	case message.ChallengeResponse:
 		c.handleChallengeResponse(msg.Payload)
 	}
 }
 
-func (c *Client) handleWordOfWisdomRequest() {
-	log.Printf("processing word of wisdom request")
+func (c *Client) handleWordsOfWisdomRequest() {
+	log.Printf("processing words of wisdom request")
 
 	if c.challenge != nil {
 		log.Printf("client already received challenge")
@@ -132,11 +132,11 @@ func (c *Client) handleChallengeResponse(payload []byte) {
 		return
 	}
 
-	log.Printf("solution is valid, granting a word of wisdom")
+	log.Printf("solution is valid, granting a words of wisdom")
 
-	err = c.grandWordOfWisdom()
+	err = c.grandWordsOfWisdom()
 	if err != nil {
-		log.Printf("failed to grant a word of wisdom: %v", err)
+		log.Printf("failed to grant a words of wisdom: %v", err)
 
 		return
 	}
@@ -150,7 +150,7 @@ func (c *Client) validateSolution(y0 uint64) bool {
 	return c.challenge.X0 == y0
 }
 
-func (c *Client) grandWordOfWisdom() error {
+func (c *Client) grandWordsOfWisdom() error {
 	text, author, err := c.wordsOfWisdom.Get()
 	if err != nil {
 		return fmt.Errorf("failed to get: %w", err)
@@ -168,7 +168,7 @@ func (c *Client) grandWordOfWisdom() error {
 
 	c.challenge = nil
 
-	log.Printf("word of wisdom granted")
+	log.Printf("words of wisdom granted")
 
 	return nil
 }

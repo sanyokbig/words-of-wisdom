@@ -7,10 +7,10 @@ import (
 	"strconv"
 	"syscall"
 
-	"github.com/sanyokbig/word-of-wisdom/internal/challenger"
-	cryptorand "github.com/sanyokbig/word-of-wisdom/internal/crypto-rand"
-	quotesdispenser "github.com/sanyokbig/word-of-wisdom/internal/quotes-dispenser"
-	tcpserver "github.com/sanyokbig/word-of-wisdom/internal/tcp-server"
+	"github.com/sanyokbig/words-of-wisdom/internal/challenger"
+	cryptorand "github.com/sanyokbig/words-of-wisdom/internal/crypto-rand"
+	quotesdispenser "github.com/sanyokbig/words-of-wisdom/internal/quotes-dispenser"
+	tcpserver "github.com/sanyokbig/words-of-wisdom/internal/tcp-server"
 )
 
 func main() {

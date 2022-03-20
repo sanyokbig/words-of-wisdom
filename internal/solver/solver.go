@@ -4,7 +4,7 @@ import (
 	"log"
 	"math"
 
-	"github.com/sanyokbig/word-of-wisdom/internal/checksum"
+	"github.com/sanyokbig/words-of-wisdom/internal/checksum"
 )
 
 // Solver tried to find x0 by building a tree of all possible sequences that could be used to achieve xk from x0 by

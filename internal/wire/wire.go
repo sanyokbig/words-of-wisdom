@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/sanyokbig/word-of-wisdom/internal/message"
+	"github.com/sanyokbig/words-of-wisdom/internal/message"
 )
 
 type Wire struct {
