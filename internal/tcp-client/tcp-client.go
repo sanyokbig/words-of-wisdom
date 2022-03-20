@@ -6,8 +6,11 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 
 	"github.com/sanyokbig/word-of-wisdom/internal/message"
+	"github.com/sanyokbig/word-of-wisdom/internal/methods/simple"
+	"github.com/sanyokbig/word-of-wisdom/internal/solver"
 	"github.com/sanyokbig/word-of-wisdom/internal/wire"
 )
 
@@ -20,16 +23,20 @@ type WordsOfWisdom struct {
 	Text, Author string
 }
 
+type Method interface {
+	F(uint64) uint64
+}
+
 type TCPClient struct {
 	wire Wire
 
-	wordsOfWisdom chan *WordsOfWisdom
+	wordsOfWisdomCh chan *WordsOfWisdom
 }
 
 func New(conn net.Conn) *TCPClient {
 	return &TCPClient{
-		wire:          wire.New(conn),
-		wordsOfWisdom: make(chan *WordsOfWisdom, 1),
+		wire:            wire.New(conn),
+		wordsOfWisdomCh: make(chan *WordsOfWisdom, 1),
 	}
 }
 
@@ -43,7 +50,10 @@ func (c *TCPClient) RequestWordsOfWisdom() (*WordsOfWisdom, error) {
 
 	log.Printf("words of wisdom requested")
 
-	wordsOfWisdom := <-c.wordsOfWisdom
+	wordsOfWisdom, ok := <-c.wordsOfWisdomCh
+	if !ok {
+		return nil, fmt.Errorf("unable to receive words of wisdom")
+	}
 
 	return wordsOfWisdom, nil
 }
@@ -96,14 +106,18 @@ func (c *TCPClient) handleChallengeRequest(payload []byte) {
 		return
 	}
 
-	solution, err := c.solve(msg.Xk, msg.Checksum)
+	now := time.Now().UTC()
+
+	solution, err := c.solve(msg.Xk, msg.N, msg.K, msg.Checksum)
 	if err != nil {
 		log.Printf("failed to solve challenge: %v", err)
+
+		close(c.wordsOfWisdomCh)
 
 		return
 	}
 
-	log.Printf("solution found: %v", solution)
+	log.Printf("solution found in %v: %v", time.Since(now), solution)
 
 	err = c.wire.Send(
 		message.ChallengeResponse,
@@ -122,8 +136,15 @@ func (c *TCPClient) handleChallengeRequest(payload []byte) {
 	return
 }
 
-func (c *TCPClient) solve(xk uint64, checksum string) (uint64, error) {
-	panic("implement me")
+func (c *TCPClient) solve(xk uint64, n, k int, checksum string) (uint64, error) {
+	preparedSolver := solver.New(xk, n, k, checksum, simple.New(n))
+
+	solution, ok := preparedSolver.Solve()
+	if !ok {
+		return 0, fmt.Errorf("solution not found")
+	}
+
+	return solution, nil
 }
 
 func (c *TCPClient) handleWordsOfWisdomResponse(payload []byte) {
@@ -137,7 +158,7 @@ func (c *TCPClient) handleWordsOfWisdomResponse(payload []byte) {
 		return
 	}
 
-	c.wordsOfWisdom <- &WordsOfWisdom{
+	c.wordsOfWisdomCh <- &WordsOfWisdom{
 		Text:   msg.Text,
 		Author: msg.Author,
 	}
