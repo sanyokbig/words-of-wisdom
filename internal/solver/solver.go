@@ -91,8 +91,6 @@ func (s *Solver) findValueAtDepth(currValue uint64, sequence []uint64) (value ui
 			return currValue, true
 		}
 
-		log.Printf("invalid checksum: %v", gotChecksum)
-
 		return 0, false
 	}
 
