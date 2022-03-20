@@ -3,6 +3,8 @@ package simple
 import (
 	"log"
 	"math"
+
+	mathpkg "github.com/sanyokbig/words-of-wisdom/internal/math"
 )
 
 type Simple struct {
@@ -13,7 +15,7 @@ func New(n int) *Simple {
 	log.Printf("prepared simple method with n: %v", n)
 
 	return &Simple{
-		max: uint64(math.Pow(2, float64(n))) - 1,
+		max: mathpkg.Pow2(n) - 1,
 	}
 }
 

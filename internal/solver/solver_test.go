@@ -3,13 +3,13 @@ package solver
 import (
 	"io/ioutil"
 	"log"
-	"math"
 	"math/rand"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 
 	"github.com/sanyokbig/words-of-wisdom/internal/challenger"
+	mathpkg "github.com/sanyokbig/words-of-wisdom/internal/math"
 )
 
 func Test_buildInversionTable(t *testing.T) {
@@ -40,7 +40,7 @@ func Test_buildInversionTable(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			method := stubMethod{
-				max: uint64(math.Pow(2, float64(tt.args.n))) - 1,
+				max: mathpkg.Pow2(tt.args.n) - 1,
 			}
 
 			got := buildInversionTable(tt.args.n, method)

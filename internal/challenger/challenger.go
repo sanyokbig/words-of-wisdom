@@ -1,7 +1,7 @@
 package challenger
 
 import (
-	"math"
+	mathpkg "github.com/sanyokbig/words-of-wisdom/internal/math"
 
 	"github.com/sanyokbig/words-of-wisdom/internal/checksum"
 )
@@ -48,7 +48,7 @@ func New(randUint64 RandUint64) *Challenger {
 // Prepare will prepare a Challenge with selected Method and difficulty
 func (c *Challenger) Prepare(method Method, n, k int) *Challenge {
 	// Max possible value for x0
-	max := uint64(math.Pow(2, float64(n))) - 1
+	max := mathpkg.Pow2(n) - 1
 
 	// Initial value, which the client will try to find
 	// Remainder from division is used to limit by max

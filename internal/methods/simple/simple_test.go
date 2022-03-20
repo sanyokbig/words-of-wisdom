@@ -1,10 +1,11 @@
 package simple
 
 import (
-	"math"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	mathpkg "github.com/sanyokbig/words-of-wisdom/internal/math"
 )
 
 func TestValuesInValidRange(t *testing.T) {
@@ -25,7 +26,7 @@ func TestValuesInValidRange(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			simpleMethod := New(tt.n)
 
-			max := uint64(math.Pow(2, float64(tt.n)))
+			max := mathpkg.Pow2(tt.n)
 
 			for i := uint64(0); i < max; i++ {
 				got := simpleMethod.F(i)
@@ -55,7 +56,7 @@ func TestHasCollidingResults(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			simpleMethod := New(tt.n)
 
-			max := uint64(math.Pow(2, float64(tt.n)))
+			max := mathpkg.Pow2(tt.n)
 
 			results := map[uint64]int{}
 
