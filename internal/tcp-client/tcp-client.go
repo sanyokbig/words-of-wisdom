@@ -71,7 +71,7 @@ func (c *TCPClient) Process() {
 	}
 
 	if err := scanner.Err(); err != nil {
-		log.Printf("connection closed: %v: err", err)
+		log.Printf("connection closed: %v", err)
 
 		return
 	}
