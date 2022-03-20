@@ -9,6 +9,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/sanyokbig/word-of-wisdom/internal/challenger"
 	quotesdispenser "github.com/sanyokbig/word-of-wisdom/internal/quotes-dispenser"
 	tcpserver "github.com/sanyokbig/word-of-wisdom/internal/tcp-server"
 )
@@ -48,7 +49,7 @@ func main() {
 
 	listenAddr := ":" + strconv.Itoa(config.TCPPort)
 
-	tcpServer := tcpserver.New(quotesDispenser)
+	tcpServer := tcpserver.New(quotesDispenser, challenger.New())
 	go func() {
 		err := tcpServer.ListenAndServe(listenAddr)
 		if err != nil {
