@@ -103,6 +103,8 @@ func (c *TCPClient) handleChallengeRequest(payload []byte) {
 	if err != nil {
 		log.Printf("failed to unmarshal challenge request payload: %v", err)
 
+		close(c.wordsOfWisdomCh)
+
 		return
 	}
 
@@ -128,6 +130,8 @@ func (c *TCPClient) handleChallengeRequest(payload []byte) {
 	if err != nil {
 		log.Printf("failed to send solution: %v", err)
 
+		close(c.wordsOfWisdomCh)
+
 		return
 	}
 
@@ -152,6 +156,8 @@ func (c *TCPClient) handleWordsOfWisdomResponse(payload []byte) {
 	err := msg.UnmarshalJSON(payload)
 	if err != nil {
 		log.Printf("failed to unmarshal words of wisdom response payload: %v", err)
+
+		close(c.wordsOfWisdomCh)
 
 		return
 	}
