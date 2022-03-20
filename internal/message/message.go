@@ -20,6 +20,8 @@ type Message struct {
 //easyjson:json
 type ChallengeRequestPayload struct {
 	Xk       uint64 `json:"xk"`
+	K        int    `json:"k"`
+	N        int    `json:"n"`
 	Checksum string `json:"checksum"`
 }
 
