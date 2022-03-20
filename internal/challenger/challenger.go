@@ -1,7 +1,6 @@
 package challenger
 
 import (
-	"log"
 	"math"
 	"math/rand"
 
@@ -58,16 +57,11 @@ func (c *Challenger) Prepare(method Method, n, k int) *Challenge {
 	sequence := make([]uint64, k+1)
 	sequence[k] = x0
 
-	log.Printf("x0: %v\n", x0)
-
 	// Apply F() k times to x0 while also applying XOR on every iteration to make calculation dependent on a step number
 	for i := uint64(1); i <= uint64(k); i++ {
 		xk = method.F(xk) ^ i
-		log.Printf("x%v: %v\n", i, xk)
 		sequence[uint64(k)-i] = xk
 	}
-
-	log.Printf("sequence: %v\n", sequence)
 
 	seqChecksum := checksum.Make(sequence)
 
