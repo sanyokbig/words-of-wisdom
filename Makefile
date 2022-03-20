@@ -17,9 +17,8 @@ build-client:
 	docker build -t words-of-wisdom-client -f ./build/client.Dockerfile .
 
 run-server:
-	# (Re)Start network
-	docker network remove words-of-wisdom-net 2> /dev/null | true
-	docker network create words-of-wisdom-net
+	# Start network
+	docker network create words-of-wisdom-net 2> /dev/null | true
 
 	# (Re)Start server
 	docker rm -f words-of-wisdom-server 2> /dev/null| true
@@ -31,6 +30,9 @@ run-server:
 		words-of-wisdom-server:latest
 
 run-client:
+	# Start network
+	docker network create words-of-wisdom-net 2> /dev/null | true
+
 	# (Re)Start client
 	docker rm -f words-of-wisdom-client | true
 	docker run --rm \
@@ -39,3 +41,6 @@ run-client:
 		--net words-of-wisdom-net \
 		words-of-wisdom-client:latest
 
+clean-up:
+	docker rm -f words-of-wisdom-client words-of-wisdom-server | true
+	docker network remove words-of-wisdom-net | true
