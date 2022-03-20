@@ -4,17 +4,30 @@ import (
 	"fmt"
 	"log"
 	"net"
+
+	"github.com/sanyokbig/word-of-wisdom/internal/challenger"
+	"github.com/sanyokbig/word-of-wisdom/internal/methods/simple"
 )
+
+type WordsOfWisdom interface {
+	Get() (string, string, error)
+}
+
+type Challenger interface {
+	Prepare(method challenger.Method, n, k int) *challenger.Challenge
+}
 
 type TCPServer struct {
 	listener net.Listener
 
 	wordsOfWisdom WordsOfWisdom
+	challenger    Challenger
 }
 
-func New(wordsOfWisdom WordsOfWisdom) *TCPServer {
+func New(wordsOfWisdom WordsOfWisdom, challenger Challenger) *TCPServer {
 	return &TCPServer{
 		wordsOfWisdom: wordsOfWisdom,
+		challenger:    challenger,
 	}
 }
 
@@ -42,6 +55,21 @@ func (s *TCPServer) Close() error {
 	return s.listener.Close()
 }
 
+func (s *TCPServer) prepareChallenge() *challenger.Challenge {
+	// Right now both bitSize and depth parameters are constant, but can be dynamically adjusted based on a number of
+	// active clients or other metrics and conditions if needed
+	var (
+		// A bit size mostly affects only client and slightly server
+		bitSize = 21
+
+		// Depth affects both server and client execution time
+		depth = 64
+	)
+	return s.challenger.Prepare(simple.New(bitSize), bitSize, depth)
+}
+
 func (s *TCPServer) handleConn(conn net.Conn) {
-	NewClient(conn, s.wordsOfWisdom).Process()
+	client := NewClient(conn, s.wordsOfWisdom, s)
+
+	client.Process()
 }
