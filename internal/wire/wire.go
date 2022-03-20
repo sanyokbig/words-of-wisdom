@@ -57,7 +57,7 @@ func (w *Wire) Send(msgType message.MsgType, payload json.Marshaler) (err error)
 
 	data, err := message.Message{Type: msgType, Payload: rawPayload}.MarshalJSON()
 	if err != nil {
-		return fmt.Errorf("failed to marshal payload: %w", err)
+		return fmt.Errorf("failed to marshal message: %w", err)
 	}
 
 	_, err = fmt.Fprintf(w.conn, "%s\n", data)
